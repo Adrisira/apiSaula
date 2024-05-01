@@ -39,7 +39,6 @@ public class Usuario {
 	private int edad;
 	@Column
 	private String dirImg;
-	@Column
 	@OneToMany(mappedBy = "id_usuario", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Matricula> matriculas;

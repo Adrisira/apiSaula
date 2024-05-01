@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "usuario")
+@Entity(name = "curso")
 public class Curso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,12 +34,10 @@ public class Curso {
 	private String descripcion;
 	@Column
 	private String imagen;
-	@Column
 	@OneToMany(mappedBy = "id_curso", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Matricula> matriculas;
-	@Column
-	@OneToMany(mappedBy = "id_contenido", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Contenido> contenidos;
 }

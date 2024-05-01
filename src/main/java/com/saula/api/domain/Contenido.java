@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "usuario")
+@Entity(name = "contenido")
 public class Contenido {
 
 	@Id
@@ -34,7 +34,6 @@ public class Contenido {
 	private String descripcion;
 	@Column
 	private int orden;
-	@Column
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "curso_codigo", referencedColumnName = "id")

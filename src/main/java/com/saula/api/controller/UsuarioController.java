@@ -38,7 +38,7 @@ public class UsuarioController {
 		return new ResponseEntity<>(usuarios, HttpStatus.OK);
 	}
 	
-	@GetMapping("/usuarip/{id}")
+	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> getUsuario(@PathVariable long id){
 		Usuario usuario = usuarioService.findById(id).orElseThrow(()-> new UsuarioNotFoundException(id));
 		return new ResponseEntity<>(usuario, HttpStatus.OK);
