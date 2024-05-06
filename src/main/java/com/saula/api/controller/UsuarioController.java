@@ -1,6 +1,6 @@
 package com.saula.api.controller;
 
-import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.saula.api.domain.LoginRequest;
 import com.saula.api.domain.Usuario;
 import com.saula.api.exception.UsuarioNotFoundException;
 import com.saula.api.service.UsuarioService;
@@ -31,12 +30,6 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	
-	@GetMapping("/usuario")
-	public ResponseEntity<Set<Usuario>> getUsuarios(){
-		Set<Usuario> usuarios= null;
-		usuarios = usuarioService.findAll();
-		return new ResponseEntity<>(usuarios, HttpStatus.OK);
-	}
 	
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> getUsuario(@PathVariable long id){
@@ -44,12 +37,23 @@ public class UsuarioController {
 		return new ResponseEntity<>(usuario, HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/usuario", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/registrer", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
         Usuario addedUsuario = usuarioService.addUsuario(usuario);
         return new ResponseEntity<>(addedUsuario, HttpStatus.CREATED);
     }
 	
+	@PostMapping(value="/existEmail", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> existsByEmail(@RequestBody String email) {
+        Boolean existe = usuarioService.existsByEmail(email);
+        return new ResponseEntity<>(existe, HttpStatus.OK);
+    }
+	
+	@PostMapping(value="/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> login(@RequestBody LoginRequest login) {
+        Boolean inicia = usuarioService.login(login.getEmail(), login.getPassword());
+        return new ResponseEntity<>(inicia, HttpStatus.OK);
+    }
 	@PutMapping(value="/usuario/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Usuario> modifyUsuario(@PathVariable long id, @RequestBody Usuario newUsuario) {
 		Usuario usuario = usuarioService.modifyUsuario(id, newUsuario);
