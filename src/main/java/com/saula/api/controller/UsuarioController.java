@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ import com.saula.api.domain.LoginRequest;
 import com.saula.api.domain.Usuario;
 import com.saula.api.exception.UsuarioNotFoundException;
 import com.saula.api.service.UsuarioService;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UsuarioController {
 

@@ -40,7 +40,7 @@ public class CursoController {
 		return new ResponseEntity<>(curso, HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/curso", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/crearCurso", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Curso> addCurso(@RequestBody Curso curso) {
         Curso addedCurso = cursoService.addCurso(curso);
         return new ResponseEntity<>(addedCurso, HttpStatus.CREATED);
