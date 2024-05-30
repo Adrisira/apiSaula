@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +35,7 @@ public class Curso {
 	private String descripcion;
 	@Column
 	private String imagen;
-	@OneToMany(mappedBy = "id_curso", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true ,mappedBy = "curso")
 	@JsonIgnore
 	private List<Matricula> matriculas;
 	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)

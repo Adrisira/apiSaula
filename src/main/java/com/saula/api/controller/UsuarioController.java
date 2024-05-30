@@ -51,9 +51,10 @@ public class UsuarioController {
     }
 	
 	@PostMapping(value="/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> login(@RequestBody LoginRequest login) {
-        Boolean inicia = usuarioService.login(login.getEmail(), login.getPassword());
-        return new ResponseEntity<>(inicia, HttpStatus.OK);
+    public ResponseEntity<Usuario> login(@RequestBody LoginRequest login) {
+        Long idUser = usuarioService.login(login.getEmail(), login.getPassword());
+        Usuario user = usuarioService.findById(idUser).orElseThrow(()-> new UsuarioNotFoundException(idUser));
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 	@PutMapping(value="/usuario/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Usuario> modifyUsuario(@PathVariable long id, @RequestBody Usuario newUsuario) {

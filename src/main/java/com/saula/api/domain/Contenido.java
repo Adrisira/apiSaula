@@ -20,7 +20,7 @@ public class Contenido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@Column
 	@NotNull
 	private String titulo;

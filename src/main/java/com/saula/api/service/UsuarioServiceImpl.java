@@ -53,11 +53,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public Boolean login(String email, String password) {
+	public Long login(String email, String password) {
 		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-        return usuarioOptional
+		Long idUser = -1L;
+		if(usuarioOptional
                 .map(usuario -> usuario.getPassword().equals(password))
-                .orElse(false);
+                .orElse(false)) {
+			 idUser = usuarioOptional.stream().findFirst().get().getId();
+			
+		}
+        return idUser;
     }
 
 }
