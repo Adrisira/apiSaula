@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saula.api.domain.Contenido;
+import com.saula.api.dto.ContenidoDTO;
 import com.saula.api.exception.ContenidoNotFoundException;
 import com.saula.api.service.ContenidoService;
 
@@ -50,9 +51,9 @@ public class ContenidoController {
 	}
 	
 	
-	@PostMapping(value="/contenido", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Contenido> addContenido(@RequestBody Contenido contenido) {
-        Contenido addedContenido = contenidoService.addContenido(contenido);
+	@PostMapping(value="/crearContenido", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Contenido> addContenido(@RequestBody ContenidoDTO contenidoDTO) {
+        Contenido addedContenido = contenidoService.addContenido(contenidoDTO);
         return new ResponseEntity<>(addedContenido, HttpStatus.CREATED);
     }
 	

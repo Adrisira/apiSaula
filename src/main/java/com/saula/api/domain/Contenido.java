@@ -20,7 +20,7 @@ public class Contenido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	@Column
 	@NotNull
 	private String titulo;
@@ -34,7 +34,6 @@ public class Contenido {
 	private String descripcion;
 	@Column
 	private int orden;
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "curso_codigo")
 	private Curso curso;

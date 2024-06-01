@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.saula.api.domain.Contenido;
 import com.saula.api.domain.Curso;
+import com.saula.api.dto.ContenidoDTO;
 import com.saula.api.exception.ContenidoNotFoundException;
 import com.saula.api.exception.CursoNotFoundException;
 import com.saula.api.repository.ContenidoRepository;
@@ -39,7 +40,18 @@ public class ContenidoServiceImpl implements ContenidoService{
 	}
 
 	@Override
-	public Contenido addContenido(Contenido contenido) {
+	public Contenido addContenido(ContenidoDTO contenidoDTO) {
+		Curso curso = cursoRepository.findById(contenidoDTO.getIdCurso())
+                .orElseThrow(() -> new CursoNotFoundException(contenidoDTO.getIdCurso()));
+		
+		Contenido contenido = new Contenido();
+		contenido.setTitulo(contenidoDTO.getTitulo());
+		contenido.setEnlace(contenidoDTO.getEnlace());
+		contenido.setVideo(contenidoDTO.getVideo());
+		contenido.setFoto(contenidoDTO.getFoto());
+		contenido.setDescripcion(contenidoDTO.getDescripcion());
+		contenido.setOrden(contenidoDTO.getOrden());
+		contenido.setCurso(curso);
 		return contenidoRepository.save(contenido);
 	}
 
