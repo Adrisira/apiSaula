@@ -38,7 +38,7 @@ public class Curso {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true ,mappedBy = "curso")
 	@JsonIgnore
 	private List<Matricula> matriculas;
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true ,mappedBy = "curso")
 	@JsonIgnore
 	private List<Contenido> contenidos;
 }

@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.saula.api.domain.Contenido;
+import com.saula.api.domain.Curso;
 import com.saula.api.exception.ContenidoNotFoundException;
+import com.saula.api.exception.CursoNotFoundException;
 import com.saula.api.repository.ContenidoRepository;
+import com.saula.api.repository.CursoRepository;
 
 @Service
 public class ContenidoServiceImpl implements ContenidoService{
@@ -16,9 +19,18 @@ public class ContenidoServiceImpl implements ContenidoService{
 	@Autowired
 	private ContenidoRepository contenidoRepository;
 	
+	@Autowired
+	private CursoRepository cursoRepository;
+	
 	@Override
 	public Set<Contenido> findAll() {
 		return contenidoRepository.findAll();
+	}
+	
+	@Override 
+	public Set<Contenido> findByIdCurso(long id_curso) {
+		Curso curso = cursoRepository.findById(id_curso).orElseThrow(()-> new CursoNotFoundException(id_curso));
+		return contenidoRepository.findByCurso(curso);
 	}
 
 	@Override

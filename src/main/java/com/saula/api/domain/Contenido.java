@@ -36,6 +36,6 @@ public class Contenido {
 	private int orden;
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "curso_codigo", referencedColumnName = "id")
-	private Curso id_curso;
+	@JoinColumn(name = "curso_codigo")
+	private Curso curso;
 }

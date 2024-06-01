@@ -43,6 +43,13 @@ public class ContenidoController {
 		return new ResponseEntity<>(contenido, HttpStatus.OK);
 	}
 	
+	@GetMapping("/contenidoCurso/{id}")
+	public ResponseEntity<Set<Contenido>> getContenidoCurso(@PathVariable long id){
+		Set<Contenido> contenidos = contenidoService.findByIdCurso(id);
+		return new ResponseEntity<>(contenidos, HttpStatus.OK);
+	}
+	
+	
 	@PostMapping(value="/contenido", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Contenido> addContenido(@RequestBody Contenido contenido) {
         Contenido addedContenido = contenidoService.addContenido(contenido);
