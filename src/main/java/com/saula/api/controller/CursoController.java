@@ -42,19 +42,25 @@ public class CursoController {
 		return new ResponseEntity<>(curso, HttpStatus.OK);
 	}
 	
+	@GetMapping("/codigoCurso/{codigo}")
+	public ResponseEntity<Curso> getCurso(@PathVariable String codigo){
+		Curso curso = cursoService.findByCodigo(codigo).orElseThrow(()-> new CursoNotFoundException(codigo));
+		return new ResponseEntity<>(curso, HttpStatus.OK);
+	}
+	
 	@PostMapping(value="/crearCurso", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Curso> addCurso(@RequestBody Curso curso) {
         Curso addedCurso = cursoService.addCurso(curso);
         return new ResponseEntity<>(addedCurso, HttpStatus.CREATED);
     }
 	
-	@PutMapping(value="/curso/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value="/modifyCurso/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Curso> modifyCurso(@PathVariable long id, @RequestBody Curso newCurso) {
 		Curso curso = cursoService.modifyCurso(id, newCurso);
 		return new ResponseEntity<>(curso, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/autor/{id}")
+	@DeleteMapping("/deleteCurso/{id}")
 	public ResponseEntity<Response> deleteCurso(@PathVariable long id) {
 		cursoService.deleteCurso(id);
 		return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);

@@ -8,6 +8,7 @@ public interface CursoService {
 
 	Set<Curso> findAll();
 	Optional<Curso> findById(long id);
+	Optional<Curso> findByCodigo(String codigo);
 	Curso addCurso(Curso curso);
 	Curso modifyCurso(long id, Curso newCurso);
 	void deleteCurso(long id);

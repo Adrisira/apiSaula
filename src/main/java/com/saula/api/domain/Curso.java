@@ -28,8 +28,8 @@ public class Curso {
 	@Column
 	@NotNull
 	private String nombre;
-	@Column
 	@NotNull
+	@Column(unique=true)
 	private String codigo;
 	@Column
 	private String descripcion;

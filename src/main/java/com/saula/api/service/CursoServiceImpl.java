@@ -27,6 +27,10 @@ public class CursoServiceImpl implements CursoService {
 	}
 
 	@Override
+	public Optional<Curso> findByCodigo(String codigo) {
+		return cursoRepository.findByCodigo(codigo);
+	}
+	@Override
 	public Curso addCurso(Curso curso) {
 		return cursoRepository.save(curso);
 	}
