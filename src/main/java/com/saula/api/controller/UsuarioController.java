@@ -22,7 +22,7 @@ import com.saula.api.domain.LoginRequest;
 import com.saula.api.domain.Usuario;
 import com.saula.api.exception.UsuarioNotFoundException;
 import com.saula.api.service.UsuarioService;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class UsuarioController {
 
