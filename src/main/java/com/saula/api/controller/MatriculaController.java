@@ -25,7 +25,7 @@ import com.saula.api.exception.MatriculaNotFoundException;
 import com.saula.api.service.MatriculaService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class MatriculaController {
 	
 	@Autowired 
@@ -38,13 +38,19 @@ public class MatriculaController {
 		return new ResponseEntity<>(matriculas, HttpStatus.OK);
 	}
 	
+	@GetMapping("/matricula/{id}")
+	public ResponseEntity<Matricula> getMatricula(@PathVariable long id){
+		Matricula matricula = matriculaService.findById(id).orElseThrow(()-> new MatriculaNotFoundException(id));
+		return new ResponseEntity<>(matricula, HttpStatus.OK); 
+	}
+	
 	@GetMapping("/matriculaUsuario/{id}")
 	public ResponseEntity<Set<Matricula>> getMatriculasUsuario(@PathVariable long id){
 		Set<Matricula> matriculas = matriculaService.findByIdUsuario(id);
 		return new ResponseEntity<>(matriculas, HttpStatus.OK);
 	}
 	
-	@GetMapping("/matricula/{id}")
+	@GetMapping("/matriculaCurso/{id}")
 	public ResponseEntity<Set<Matricula>> getMatriculasCurso(@PathVariable long id){
 		Set<Matricula> cursos = matriculaService.findByIdCurso(id);
 		return new ResponseEntity<>(cursos, HttpStatus.OK);
@@ -62,10 +68,14 @@ public class MatriculaController {
 		return new ResponseEntity<>(matricula, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/matricula/{id}")
-	public ResponseEntity<Response> deleteMatricula(@PathVariable long id_Usuario) {
-		matriculaService.deleteMatricula(id_Usuario);
-		return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
+	@DeleteMapping(value="/deleteMatricula/{id}")
+	public ResponseEntity<Response> deleteMatricula(@PathVariable long id) {
+		 try {
+		        matriculaService.deleteMatricula(id);
+		        return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
+		    } catch (MatriculaNotFoundException e) {
+		        return new ResponseEntity<>(Response.errorResonse(Response.NOT_FOUND, e.getMessage()), HttpStatus.NOT_FOUND);
+		    } 
 	}
 	
 	@ExceptionHandler(MatriculaNotFoundException.class)

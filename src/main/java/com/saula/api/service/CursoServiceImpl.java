@@ -38,6 +38,7 @@ public class CursoServiceImpl implements CursoService {
 	@Override
 	public Curso modifyCurso(long id, Curso newCurso) {
 		Curso curso = cursoRepository.findById(id).orElseThrow(()-> new CursoNotFoundException(id));
+		
 		newCurso.setId(curso.getId());
 		return cursoRepository.save(newCurso);
 	}

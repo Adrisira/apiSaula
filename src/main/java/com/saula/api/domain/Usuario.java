@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -41,6 +41,6 @@ public class Usuario {
 	@Column
 	private String dirImg;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true ,mappedBy = "usuario")
-	@JsonIgnore
+	@JsonIgnoreProperties("usuario")
 	private List<Matricula> matriculas;
 }

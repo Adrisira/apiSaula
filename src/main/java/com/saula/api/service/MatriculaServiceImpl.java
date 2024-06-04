@@ -3,6 +3,7 @@ package com.saula.api.service;
 import java.util.Optional;
 import java.util.Set;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +55,7 @@ public class MatriculaServiceImpl implements MatriculaService {
                 .orElseThrow(() -> new UsuarioNotFoundException(matriculaDTO.getIdUsuario()));
         Curso curso = cursoRepository.findById(matriculaDTO.getIdCurso())
                 .orElseThrow(() -> new CursoNotFoundException(matriculaDTO.getIdCurso()));
-
+        
         Matricula matricula = new Matricula();
         matricula.setRol(matriculaDTO.isRol());
         matricula.setUsuario(usuario);

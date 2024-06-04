@@ -2,12 +2,12 @@ package com.saula.api.domain;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,10 +35,10 @@ public class Curso {
 	private String descripcion;
 	@Column
 	private String imagen;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true ,mappedBy = "curso")
-	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "curso", orphanRemoval = true)
+	@JsonIgnoreProperties("curso")
 	private List<Matricula> matriculas;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true ,mappedBy = "curso")
-	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curso", orphanRemoval = true)
+	@JsonIgnoreProperties(value="curso")
 	private List<Contenido> contenidos;
 }

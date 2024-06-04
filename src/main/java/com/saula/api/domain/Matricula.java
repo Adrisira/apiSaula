@@ -1,5 +1,7 @@
 package com.saula.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,9 +28,11 @@ public class Matricula {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
+	@JsonIgnoreProperties("matriculas")
 	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
+	@JsonIgnoreProperties("matriculas")
 	private Curso curso;
 }
