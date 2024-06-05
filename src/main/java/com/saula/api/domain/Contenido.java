@@ -34,8 +34,6 @@ public class Contenido {
 	private String foto;
 	@Column
 	private String descripcion;
-	@Column
-	private int orden;
 	@ManyToOne
 	@JoinColumn(name = "curso_codigo")
 	@JsonIgnoreProperties("cursos")

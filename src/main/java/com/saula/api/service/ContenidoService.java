@@ -11,7 +11,7 @@ public interface ContenidoService {
 	Set<Contenido> findByIdCurso(long id_curso);
 	Optional<Contenido> findById(long id);
 	Contenido addContenido(ContenidoDTO contendioDTO);
-	Contenido modifyContenido(long id, Contenido newContenido);
+	Contenido modifyContenido(long id, ContenidoDTO contendioDTO);
 	void deleteContenido(long id);
 	
 	

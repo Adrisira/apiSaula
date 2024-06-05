@@ -57,13 +57,13 @@ public class ContenidoController {
         return new ResponseEntity<>(addedContenido, HttpStatus.CREATED);
     }
 	
-	@PutMapping(value="/contenido/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Contenido> modifyContenido(@PathVariable long id, @RequestBody Contenido newContenido) {
-		Contenido contenido = contenidoService.modifyContenido(id, newContenido);
+	@PutMapping(value="/modifyContenido/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Contenido> modifyContenido(@PathVariable long id, @RequestBody ContenidoDTO contendioDTO) {
+		Contenido contenido = contenidoService.modifyContenido(id, contendioDTO);
 		return new ResponseEntity<>(contenido, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/contenido/{id}")
+	@DeleteMapping("/deleteContenido/{id}")
 	public ResponseEntity<Response> deleteContenido(@PathVariable long id) {
 		contenidoService.deleteContenido(id);
 		return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);

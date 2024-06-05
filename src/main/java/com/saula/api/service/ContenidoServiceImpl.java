@@ -50,15 +50,22 @@ public class ContenidoServiceImpl implements ContenidoService{
 		contenido.setVideo(contenidoDTO.getVideo());
 		contenido.setFoto(contenidoDTO.getFoto());
 		contenido.setDescripcion(contenidoDTO.getDescripcion());
-		contenido.setOrden(contenidoDTO.getOrden());
 		contenido.setCurso(curso);
 		return contenidoRepository.save(contenido);
 	}
 
 	@Override
-	public Contenido modifyContenido(long id, Contenido newContenido) {
-		Contenido contenido = contenidoRepository.findById(id).orElseThrow(()-> new ContenidoNotFoundException(id));
-		newContenido.setId(contenido.getId());
+	public Contenido modifyContenido(long id, ContenidoDTO contendidoDTO) {
+		Curso curso = cursoRepository.findById(contendidoDTO.getIdCurso())
+                .orElseThrow(() -> new CursoNotFoundException(contendidoDTO.getIdCurso()));
+		Contenido newContenido = new Contenido();
+		newContenido.setId(id);
+		newContenido.setTitulo(contendidoDTO.getTitulo());
+		newContenido.setEnlace(contendidoDTO.getEnlace());
+		newContenido.setVideo(contendidoDTO.getVideo());
+		newContenido.setFoto(contendidoDTO.getFoto());
+		newContenido.setDescripcion(contendidoDTO.getDescripcion());
+		newContenido.setCurso(curso);
 		return contenidoRepository.save(newContenido);
 	}
 

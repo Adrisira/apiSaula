@@ -7,7 +7,6 @@ public class ContenidoDTO {
 	private String video;
 	private String foto;
 	private String descripcion;
-	private int orden;
 	private long idCurso;
 	public String getTitulo() {
 		return titulo;
@@ -38,12 +37,6 @@ public class ContenidoDTO {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	public int getOrden() {
-		return orden;
-	}
-	public void setOrden(int orden) {
-		this.orden = orden;
 	}
 	public Long getIdCurso() {
 		return idCurso;

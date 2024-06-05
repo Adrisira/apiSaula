@@ -35,10 +35,10 @@ public class Curso {
 	private String descripcion;
 	@Column
 	private String imagen;
-	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "curso", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.REMOVE ,mappedBy = "curso", orphanRemoval = true)
 	@JsonIgnoreProperties("curso")
 	private List<Matricula> matriculas;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curso", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "curso", orphanRemoval = true )
 	@JsonIgnoreProperties(value="curso")
 	private List<Contenido> contenidos;
 }
