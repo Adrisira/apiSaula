@@ -3,7 +3,6 @@ package com.saula.api.service;
 import java.util.Optional;
 import java.util.Set;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,8 +72,8 @@ public class MatriculaServiceImpl implements MatriculaService {
 	
 	@Override
 	public void deleteMatricula(long id) {
-		Matricula matricula = matriculaRepository.findById(id).orElseThrow(() -> new MatriculaNotFoundException(id));
-	    matriculaRepository.delete(matricula);
+		matriculaRepository.findById(id).orElseThrow(() -> new MatriculaNotFoundException(id));
+		matriculaRepository.deleteById(id);
 	}
 	
 

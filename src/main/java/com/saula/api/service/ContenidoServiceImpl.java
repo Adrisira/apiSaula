@@ -73,7 +73,6 @@ public class ContenidoServiceImpl implements ContenidoService{
 	public void deleteContenido(long id) {
 		contenidoRepository.findById(id).orElseThrow(()-> new ContenidoNotFoundException(id));
 		contenidoRepository.deleteById(id);
-		
 	}
 	
 

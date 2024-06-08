@@ -33,6 +33,6 @@ public class Matricula {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
-	@JsonIgnoreProperties("matriculas")
+	@JsonIgnoreProperties("cursos")
 	private Curso curso;
 }
