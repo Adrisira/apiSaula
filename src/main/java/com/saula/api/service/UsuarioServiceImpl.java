@@ -19,11 +19,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Optional<Usuario> findById(long id) {
 		return usuarioRepository.findById(id);
 	}
-
-	@Override
 	public Optional<Usuario> findByEmail(String email) {
-		return usuarioRepository.findByEmail(email);
+        return usuarioRepository.findByEmail(email);
 	}
+
+	
 
 	@Override
 	public Usuario addUsuario(Usuario usuario) {
@@ -46,7 +46,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Boolean existsByEmail(String email) {
 		boolean respuesta = false;
-		if (usuarioRepository.findByEmail(email) != null) {
+		if (!usuarioRepository.findByEmail(email).isEmpty()) {
 			respuesta = true;
 		}
 		return respuesta;
@@ -55,6 +55,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Long login(String email, String password) {
 		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
+		System.out.println(usuarioOptional);
 		Long idUser = -1L;
 		if(usuarioOptional
                 .map(usuario -> usuario.getPassword().equals(password))

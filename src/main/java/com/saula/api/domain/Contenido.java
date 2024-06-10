@@ -13,6 +13,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -36,6 +37,7 @@ public class Contenido {
 	private String descripcion;
 	@ManyToOne
 	@JoinColumn(name = "curso_codigo")
-	@JsonIgnoreProperties("cursos")
+	@JsonIgnoreProperties("contenidos")
+	@ToString.Exclude
 	private Curso curso;
 }

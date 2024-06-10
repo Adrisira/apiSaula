@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -29,10 +30,12 @@ public class Matricula {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	@JsonIgnoreProperties("matriculas")
+	@ToString.Exclude
 	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
-	@JsonIgnoreProperties("cursos")
+	@JsonIgnoreProperties("matriculas")
+	@ToString.Exclude
 	private Curso curso;
 }

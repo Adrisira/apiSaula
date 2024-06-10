@@ -11,7 +11,6 @@ import com.saula.api.domain.Usuario;
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	
 	Optional<Usuario> findById(long id);
-	
 	Optional<Usuario> findByEmail(String email);
 	
 	

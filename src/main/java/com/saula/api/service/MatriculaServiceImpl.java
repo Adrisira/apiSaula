@@ -72,7 +72,9 @@ public class MatriculaServiceImpl implements MatriculaService {
 	
 	@Override
 	public void deleteMatricula(long id) {
+		System.out.println(id);
 		matriculaRepository.findById(id).orElseThrow(() -> new MatriculaNotFoundException(id));
+		System.out.println(matriculaRepository.findById(id).orElseThrow(() -> new MatriculaNotFoundException(id)));
 		matriculaRepository.deleteById(id);
 	}
 	

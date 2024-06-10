@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saula.api.domain.LoginRequest;
+import com.saula.api.domain.RequestEmail;
 import com.saula.api.domain.Usuario;
 import com.saula.api.exception.UsuarioNotFoundException;
 import com.saula.api.service.UsuarioService;
@@ -45,8 +46,8 @@ public class UsuarioController {
     }
 	
 	@PostMapping(value="/existEmail", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> existsByEmail(@RequestBody String email) {
-        Boolean existe = usuarioService.existsByEmail(email);
+    public ResponseEntity<Boolean> existsByEmail(@RequestBody RequestEmail emailRequest) {
+        Boolean existe = usuarioService.existsByEmail(emailRequest.getEmail());
         return new ResponseEntity<>(existe, HttpStatus.OK);
     }
 	

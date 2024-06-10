@@ -16,6 +16,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -35,10 +36,12 @@ public class Curso {
 	private String descripcion;
 	@Column
 	private String imagen;
-	@OneToMany(cascade = CascadeType.REMOVE ,mappedBy = "curso", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "curso", orphanRemoval = true)
 	@JsonIgnoreProperties("curso")
+	@ToString.Exclude
 	private List<Matricula> matriculas;
-	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "curso", orphanRemoval = true )
-	@JsonIgnoreProperties(value="curso")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "curso", orphanRemoval = true )
+	@JsonIgnoreProperties("curso")
+	@ToString.Exclude
 	private List<Contenido> contenidos;
 }
