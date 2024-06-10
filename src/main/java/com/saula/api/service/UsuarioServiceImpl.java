@@ -1,6 +1,7 @@
 package com.saula.api.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findByEmail(email);
 	}
 
+	@Override
+	public Set<Usuario> findAll(){
+		return usuarioRepository.findAll();
+	}
 	
 
 	@Override

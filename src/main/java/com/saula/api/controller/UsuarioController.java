@@ -2,6 +2,8 @@ package com.saula.api.controller;
 
 
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,7 +33,12 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	
+	@GetMapping("/usuarios")
+	public ResponseEntity<Set<Usuario>> getUsuarios(){
+		Set<Usuario> usuarios = null;
+		usuarios = usuarioService.findAll();
+		return new ResponseEntity<>(usuarios, HttpStatus.OK);
+	}
 	
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> getUsuario(@PathVariable long id){
