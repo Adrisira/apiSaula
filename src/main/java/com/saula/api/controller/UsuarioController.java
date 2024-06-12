@@ -70,7 +70,7 @@ public class UsuarioController {
 		return new ResponseEntity<>(usuario, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/usuario/{id}")
+	@DeleteMapping("/deleteUsuario/{id}")
 	public ResponseEntity<Response> deleteUsuario(@PathVariable long id) {
 		usuarioService.deleteUsuario(id);
 		return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
