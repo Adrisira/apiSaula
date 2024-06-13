@@ -60,7 +60,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Long login(String email, String password) {
 		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-		System.out.println(usuarioOptional);
 		Long idUser = -1L;
 		if(usuarioOptional
                 .map(usuario -> usuario.getPassword().equals(password))

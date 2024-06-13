@@ -23,7 +23,7 @@ import com.saula.api.exception.CursoNotFoundException;
 import com.saula.api.service.CursoService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class CursoController {
 
 	@Autowired

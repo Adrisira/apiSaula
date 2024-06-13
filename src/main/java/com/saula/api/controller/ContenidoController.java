@@ -24,7 +24,7 @@ import com.saula.api.exception.ContenidoNotFoundException;
 import com.saula.api.service.ContenidoService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class ContenidoController {
 
 	@Autowired
